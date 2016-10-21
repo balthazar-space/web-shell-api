@@ -11,7 +11,7 @@ The WebApp Files API provides support for File Menu functionality of an applicat
         "label": "Plain Text File",
         "type": "text/plain",
         "accept": "text/*",
-        "can": ["open","save","new"]
+        "actions": ["open","save","new"]
       }
     },
     "initial_content": <extension>
@@ -19,10 +19,10 @@ The WebApp Files API provides support for File Menu functionality of an applicat
 ````
 
 - `extensions` - An object of objects describing files that this application can create/open and/or save, keyed by file extenstion.
-  - `.label` - This will be displayed in file dialog boxes etc.
-  - `.type` - The mime type of files with this extension.
-  - `.accept` (optional) - MIME types of files that can be accepted under this extension, in the same format as for the `accept` attribute on file input elements. Defaults to `.type`.
-  - `.can` - An array of action ids indicating which actions the application can perform for this extension.
+  - `label` - This will be displayed in file dialog boxes etc.
+  - `type` - The mime type of files with this extension.
+  - `accept` (optional) - MIME types of files that can be accepted under this extension, in the same format as for the `accept` attribute on file input elements. Defaults to `type`.
+  - `actions` - An array of action ids indicating which actions the application can perform for this extension.
 
 ## Actions
 
