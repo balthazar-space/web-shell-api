@@ -57,12 +57,12 @@ Open a file with this `extension` and `content`.
 #### Response
 	"OK"
 
-### Action `save`
+### Action `file-save`
 Save the the current content of the document as a file with this extension.
 
 #### Request
     {
-      "action": "save",
+      "action": "file-save",
       "extension": "txt"
     }
 
