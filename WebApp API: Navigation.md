@@ -16,7 +16,7 @@ The WebApp Navigation API provides support for Navigation/History functionality 
   	}
 }
 ````
-  - `can` - An array of action ids indicating which actions the application can perform for this extension.
+  - `actions` - An array of action ids indicating which actions the application will accept. This may e.g. be used by the shell UI to display only the applicable buttons.
 
 ## Actions
 
@@ -92,4 +92,5 @@ The WebApp Navigation API provides support for Navigation/History functionality 
     
 - `url` - The new URL of the app.
 - `title` - The new title of the app.
+- `can` - An array of action ids indicating which actions the application will accept. This may e.g. be used by the shell UI to display only the applicable buttons.
 - `can` - An array of action ids that are meaningful from this url.
