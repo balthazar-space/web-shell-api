@@ -10,6 +10,15 @@ to a Web File System.
 
 ---
 
+## Table of Contents
++ [Rationale](#rationale)
++ [Manifest](#manifest)
++ [Action `file-new`](#action-file-new)
++ [Action `file-open`](#action-file-open)
++ [Action `file-save`](#action-file-save)
+
+---
+
 ## Rationale
 - __Common use case:__ Many apps are viewers or editors for various file types.
 - __Security:__ Editors and viewers do not need and should not be given general access to user files or
