@@ -13,7 +13,46 @@ common file system operatons for various file storage web services.
 + [Action `fs-read`](#action-fs-read)
 + [Action `fs-write`](#action-fs-write)
 
+##Synopsis
+```
+@action fs-path (path,[fields]) => PathInfo
+Return information about a path.
 
+@action fs-info (path,[fields]) => PathInfo
+Return information about an existing file.
+
+@action fs-read (path,[fields]) => PathInfo + {content}
+Read a file from path and return its content.
+
+@action fs-write (path,type,content,[fields]) => PathInfo
+Write content to a file at path.
+
+@action fs-delete (path,[fields]) => PathInfo
+Delete the file at path.
+
+@action fs-list (path,[fields],[query]) => PathInfo + {list}
+List files in a directory.
+
+@action fs-mkdir (path,[fields]) => PathInfo
+Create a directory.
+
+@action fs-rmdir (path,[fields]) => PathInfo
+
+@error not-found
+The path was not found.
+
+@error not-allowed
+The user is not allowed to perform this action
+
+@error rejected(reason)
+The action was rejected.
+
+@error failed(reason)
+An unhandled exception occurred.
+
+@struct PathInfo {filename,type,can,size,ctime,mtime,atime,cuser,muser,auser,owner}
+Information about the path and any file/directory at the path.
+```
 ## Manifest
 
 ```json
