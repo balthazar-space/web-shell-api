@@ -34,7 +34,7 @@ Other functionalities may require extensions to the specification.
     "default_extension": "txt",
     "contains_extension": "txt"
   }
-````
+```
 
 - `extensions` - An object of objects describing files that this application can create/open and/or save, keyed by file extenstion.
   - `label` - This will be displayed in file dialog boxes etc.
@@ -45,27 +45,28 @@ Other functionalities may require extensions to the specification.
 - `deafult_extension` - The default extension for actions. Note: This is only a hint for the shell. 
 The actual extension will be provided in action calls.
   
-## Actions
-
-### Action `file-new`
+## Action `file-new`
 
 Create a new (usually empty) document that can be saved as a file with this `extension`.
 
-#### Request
+### Request
+
     {
       "action": "file-new",
       "extension": "txt"
     }
 
-#### Response
-	"OK"
+### Response
 
-### Action `file-open`
+    "OK"
+
+## Action `file-open`
 
 Open a file with this `extension` and `content`.
 
-#### Request
-    {
+### Request
+
+   {
       "action": "file-open",
       "extension": "txt",
       "type": "text/plain",
@@ -75,19 +76,21 @@ Open a file with this `extension` and `content`.
 - `type` - is the actual mime type of the file, as reported by the source file system.
 - `content` - is an ArrayBuffer transfered from the calling window.
     
-#### Response
+### Response
 	"OK"
 
-### Action `file-save`
+## Action `file-save`
 Save the the current content of the document as a file with this extension.
 
-#### Request
+### Request
+
     {
       "action": "file-save",
       "extension": "txt"
     }
 
 ### Response
+
     {
       "content": ArrayBuffer(<binary data>)
     }
