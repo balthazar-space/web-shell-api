@@ -7,7 +7,7 @@ common file system operatons for various file storage web services.
 
 ```json
   "_north_tooth_fs": {
-     can: ['list','path','info','read','write','mkdir','rmdir']
+     "can": ["list","path","info","read","write","mkdir","rmdir"]
   }
 ```
 
@@ -18,48 +18,53 @@ common file system operatons for various file storage web services.
 Returns information about a path.
 
 #### Request
-    {
-        "action": "fs-path",
-        "path": "path/to/file.txt",
-        "fields": ['type','size','can']
-    }
+
+```json
+{
+    "action": "fs-path",
+    "path": "path/to/file.txt",
+    "fields": ["type","size","can"]
+}
+```
 - `fields` - Optional. An array of names of fields that should be returned. If omitted, all fields should be returned.
 
 #### Response
 
 This `path` is a text file:
 
-    {
-        "type": "text/plain",
-        "can": [ "read", "write" ],
-        "size": 1234,
-        "ctime": 1234567890,
-        "mtime": 1234567890,
-        "atime": 1234567890,
-        "cuser": "CreatedByUser",
-        "muser": "EditedByUser",
-        "auser": "ViewedByUser",
-        "owner": "OwnedByUser",
-    }
-    
+```json
+{
+    "type": "text/plain",
+    "can": [ "read", "write" ],
+    "size": 1234,
+    "ctime": 1234567890,
+    "mtime": 1234567890,
+    "atime": 1234567890,
+    "cuser": "CreatedByUser",
+    "muser": "EditedByUser",
+    "auser": "ViewedByUser",
+    "owner": "OwnedByUser"
+}
+```    
 This `path` is a directory:  
-
+```json
     {
         "type": "directory",
-        "can": [ "list","rmdir" ],
-        "owner": "OwnedByUser",
+        "can": [ "list","rmdir"],
+        "owner": "OwnedByUser"
     }
-    
+```
+
 This `path` does not exist, but can be written to:  
 
     {
-        "can": ["write" ],
+        "can": ["write","mkdir"]
     }
     
 This `path` does not exist, and cannot be written to:  
 
     {
-        "can": [],
+        "can": []
     }
 
 - `can` - An array of fs-action ids that can be performed at this path.
