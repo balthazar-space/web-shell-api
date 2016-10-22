@@ -5,13 +5,13 @@
 Provides a common API for file operations for Web File Systems. Web FS Connectors provide wrappers for
 common file system operatons for various file storage web services.
 
-* [Manifest](#manifest)
-* [Actions](#actions)
-  * [Action `fs-path`](#action--fs-path-)
-  * [Action `fs-info`](#action--fs-info-)
-  * [Action `fs-list`](#action--fs-list-)
-  * [Action `fs-read`](#action--fs-read-)
-  * [Action `fs-write`](#action--fs-write-)
++ [Manifest](#manifest)
++ [Actions](#actions)
+  + [Action `fs-path`](#action-fs-path)
+  + [Action `fs-info`](#action-fs-info)
+  + [Action `fs-list`](#action-fs-list)
+  + [Action `fs-read`](#action-fs-read)
+  + [Action `fs-write`](#action-fs-write)
 
 
 ## Manifest
