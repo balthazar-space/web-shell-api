@@ -8,6 +8,8 @@ read the file contents from a Web File System and instruct the app to open the c
 to save the file, the shell will instruct the app to provide the updated contents, which the shell will then write
 to a Web File System.
 
+---
+
 ## Rationale
 - __Common use case:__ Many apps are viewers or editors for various file types.
 - __Security:__ Editors and viewers do not need and should not be given general access to user files or
@@ -19,6 +21,8 @@ e.g. a simple painting web app and often beyond the means of its developer.
 __Note:__ The current specification assumes that the app that implements this API can view or edit a 
 single file at a time, so that the shell can know which file is opened in the app's iframe.
 Other functionalities may require extensions to the specification.
+
+---
 
 ## Manifest
 ````json
@@ -44,7 +48,9 @@ Other functionalities may require extensions to the specification.
   - `actions` - An array of action ids indicating which actions the application can perform for this extension.
 - `deafult_extension` - The default extension for actions. Note: This is only a hint for the shell. 
 The actual extension will be provided in action calls.
-  
+
+---
+
 ## Action `file-new`
 
 Create a new (usually empty) document that can be saved as a file with this `extension`.
@@ -59,6 +65,8 @@ Create a new (usually empty) document that can be saved as a file with this `ext
 ### Response
 
     "OK"
+
+---
 
 ## Action `file-open`
 
@@ -78,6 +86,8 @@ Open a file with this `extension` and `content`.
     
 ### Response
 	"OK"
+
+---
 
 ## Action `file-save`
 Save the the current content of the document as a file with this extension.
