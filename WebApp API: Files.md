@@ -83,7 +83,7 @@ Save the the current content of the document as a file with this extension.
 
 ### Response
     {
-      "content": ArrayBuffer(<data>)
+      "content": ArrayBuffer(<binary data>)
     }
 
 The returned `content`  must be provided as an ArrayBuffer that will be transfered to the calling window. __Note:__ This means that the ArrayBuffer will no longer will available in the app's window.
