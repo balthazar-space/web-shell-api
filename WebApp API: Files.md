@@ -13,7 +13,7 @@ to a Web File System.
 ## Table of Contents
 + [Synopsis](#Synopsis)
 + [Rationale](#rationale)
-+ [Manifest](#manifest)
++ [Manifest extension](#manifest-extension)
 + [Action `app-file-new`](#action-app-file-new)
 + [Action `app-file-open`](#action-app-file-open)
 + [Action `app-file-save`](#action-app-file-save)
