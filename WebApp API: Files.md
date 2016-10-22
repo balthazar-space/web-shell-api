@@ -4,7 +4,11 @@ The WebApp Files API provides support for File Menu functionality. Apps implemen
 
 ## Rationale
 - __Common use case:__ Many apps are viewers or editors for various file types.
-- __Security:__ Editors and viewers do not need and should not be given general access to user files or other information about the user, especially if they're hosted on third-party servers. 
+- __Security:__ Editors and viewers do not need and should not be given general access to user files or
+other information about the user, especially if they're hosted on third-party servers.
+- __Simplifying app development:__ Providing for file storage is often the hardest part of developing a web app.
+Integrating authorization and file storage APIs and providing the required complex user interface are beyond the scope of
+e.g. a simple painting web app and often beyond the means of its developer. 
 
 __Note:__ The current specification assumes that the app that implements this API can view or edit a 
 single file at a time, so that the shell can know which file is opened in the app's iframe.
