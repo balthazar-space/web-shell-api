@@ -2,6 +2,8 @@
 
 # WebFS API: File Operations
 
+## Table of Contents
+
 Provides a common API for file operations for Web File Systems. Web FS Connectors provide wrappers for
 common file system operatons for various file storage web services.
 
