@@ -8,6 +8,10 @@ read the file contents from a Web File System and instruct the app to open the c
 to save the file, the shell will instruct the app to provide the updated contents, which the shell will then write
 to a Web File System.
 
+__Note:__ The current specification assumes that the app that implements this API can view or edit a 
+single file at a time, so that the shell can know which file is opened in the app's iframe.
+Other functionalities may require extensions to the specification.
+
 ---
 
 ## Table of Contents
@@ -26,10 +30,6 @@ other information about the user, especially if they're hosted on third-party se
 - __Simplifying app development:__ Providing for file storage is often the hardest part of developing a web app.
 Integrating authorization and file storage APIs and providing the required complex user interface are beyond the scope of
 e.g. a simple painting web app and often beyond the means of its developer. 
-
-__Note:__ The current specification assumes that the app that implements this API can view or edit a 
-single file at a time, so that the shell can know which file is opened in the app's iframe.
-Other functionalities may require extensions to the specification.
 
 ---
 
