@@ -1,6 +1,12 @@
 # WebApp API: Files
 
-The WebApp Files API provides support for File Menu functionality. Apps implement common File Menu actions (new,open,save). Apps are only given 
+The WebApp Files API provides support for File Menu functionality, useful for apps that are viewers or editors for various file types.
+
+This API does not give web apps the power to read or write any files on their own initiative. Instead, when the user
+wants to open a file in an app (e.g. having selected it in the File Open dialog provided by the shell), the shell will 
+read the file contents from a Web File System and instruct the app to open the contents. Conversely, when the user wants
+to save the file, the shell will instruct the app to provide the updated contents, which the shell will then write
+to a Web File System.
 
 ## Rationale
 - __Common use case:__ Many apps are viewers or editors for various file types.
