@@ -4,10 +4,12 @@ Provides a common API for file operations for Web File Systems. Web FS Connector
 common file system operatons for various file storage web services.
 
 ## Manifest
-````json
+
+```json
   "_north_tooth_fs": {
+     can: ['list','path','info','read','write','mkdir','rmdir']
   }
-````
+```
 
 ## Actions
 
@@ -25,7 +27,7 @@ Returns information about a path.
 
 #### Response
 
-Path is a text file:
+This `path` is a text file:
 
     {
         "type": "text/plain",
@@ -40,7 +42,7 @@ Path is a text file:
         "owner": "OwnedByUser",
     }
     
-Path is a directory:  
+This `path` is a directory:  
 
     {
         "type": "directory",
@@ -48,13 +50,13 @@ Path is a directory:
         "owner": "OwnedByUser",
     }
     
-Path does not exist, but can be written to:  
+This `path` does not exist, but can be written to:  
 
     {
         "can": ["write" ],
     }
     
-Path does not exist, and cannot be written to:  
+This `path` does not exist, and cannot be written to:  
 
     {
         "can": [],
@@ -127,7 +129,8 @@ Read the file at this `path` and return its contents.
     }
 
 #### Response
-Returns the same information as `fs-path`, and adds:
+Returns the same information as `fs-info`, and adds:
+
     {
       "content": ArrayBuffer(<binary data>),
     }
@@ -149,7 +152,7 @@ Write the this binary `content` at this `path` and return the file's new info.
     }
 
 #### Response
-Returns the same information as `fs-path'.
+Returns the same information as `fs-info`.
 
 #### Errors
 - `not found` - Return if the path is neither writable nor could be writable.
