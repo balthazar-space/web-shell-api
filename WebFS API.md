@@ -7,12 +7,11 @@ common file system operatons for various file storage web services.
 
 ## Table of Contents
 + [Manifest](#manifest)
-+ [Actions](#actions)
-  + [Action `fs-path`](#action-fs-path)
-  + [Action `fs-info`](#action-fs-info)
-  + [Action `fs-list`](#action-fs-list)
-  + [Action `fs-read`](#action-fs-read)
-  + [Action `fs-write`](#action-fs-write)
++ [Action `fs-path`](#action-fs-path)
++ [Action `fs-info`](#action-fs-info)
++ [Action `fs-list`](#action-fs-list)
++ [Action `fs-read`](#action-fs-read)
++ [Action `fs-write`](#action-fs-write)
 
 
 ## Manifest
@@ -23,13 +22,11 @@ common file system operatons for various file storage web services.
   }
 ```
 
-## Actions
-
-### Action `fs-path`
+## Action `fs-path`
 
 Returns information about a path.
 
-#### Request
+### Request
 
 ```json
 {
@@ -40,9 +37,9 @@ Returns information about a path.
 ```
 - `fields` - Optional. An array of names of fields that should be returned. If omitted, all fields should be returned.
 
-#### Response
+### Response
 
-This `path` is a text file:
+#### This `path` is a text file:
 
 ```json
 {
@@ -57,8 +54,10 @@ This `path` is a text file:
     "auser": "ViewedByUser",
     "owner": "OwnedByUser"
 }
-```    
-This `path` is a directory:  
+```   
+
+####  This `path` is a directory:  
+
 ```json
     {
         "type": "directory",
@@ -67,13 +66,13 @@ This `path` is a directory:
     }
 ```
 
-This `path` does not exist, but can be written to:  
+#### This `path` does not exist, but can be written to:  
 
     {
         "can": ["write","mkdir"]
     }
     
-This `path` does not exist, and cannot be written to:  
+#### This `path` does not exist, and cannot be written to:  
 
     {
         "can": []
@@ -88,11 +87,11 @@ This `path` does not exist, and cannot be written to:
 If the path does not exist, only `can` should be returned. If the file system cannot provide information for any of the
 requested fields, it should omit it from the response, except for `type` as described bellow:
 
-### Action `fs-info`
+## Action `fs-info`
 
 Behaves the same as `fs-stat`, except it throws an error if the file does not exist.
 
-#### Request
+### Request
 
     {
         "action": "fs-path",
@@ -100,17 +99,17 @@ Behaves the same as `fs-stat`, except it throws an error if the file does not ex
         "fields": ['type','size','can']
     }
     
-#### Response
+### Response
 See action `fs-path`;
 
-#### Errors
+### Errors
 - `not found`
 
-### Action `fs-list`
+## Action `fs-list`
 
 Read the directory at this `path` and return the list of its files.
 
-#### Request
+### Request
 
     {
       "action": "fs-list",
@@ -118,7 +117,7 @@ Read the directory at this `path` and return the list of its files.
       "fields": [...],
     }
 
-#### Response
+### Response
 
 Returns the same information for the directory as `fs-info`, and adds:
 
@@ -129,38 +128,39 @@ Returns the same information for the directory as `fs-info`, and adds:
 - `files` - An array of objects. Each object has the same format as the response of `fs-info`, and additionally include 
 a string property `filename`.
 
-#### Errors
+### Errors
 - `not found`
 - `not allowed`
 - `not a directory`
 
-### Action `fs-read`
+## Action `fs-read`
 
 Read the file at this `path` and return its contents.
 
-#### Request
+### Request
     {
       "action": "fs-read",
       "path": "path",
       "fields": [...]
     }
 
-#### Response
+### Response
 Returns the same information as `fs-info`, and adds:
 
     {
-      "content": ArrayBuffer(<binary data>),
+      "content": ArrayBuffer(<binary data>)
     }
 
 #### Errors
+
 - `not found`
-- `not allowed˙
+- `not allowed`
 
 ### Action `fs-write`
 
 Write the this binary `content` at this `path` and return the file's new info.
 
-#### Request
+### Request
     {
       "action": "fs-write",
       "path": "path",
@@ -168,9 +168,9 @@ Write the this binary `content` at this `path` and return the file's new info.
       "fields": [...]
     }
 
-#### Response
+### Response
 Returns the same information as `fs-info`.
 
-#### Errors
+### Errors
 - `not found` - Return if the path is neither writable nor could be writable.
 - `not allowed˙ - Return if the path could be writable, but currently (e.g. for the current user) isn't.
