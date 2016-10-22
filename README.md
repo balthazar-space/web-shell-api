@@ -18,6 +18,39 @@ A _shell controller_ is a piece of software that controls the shell. This can be
 interface. The shell controller communicates with the shell through the ShellControl API. The shell only responds
 to controllers that share its origin.
 
+## APIs
+
+### ShellControl API
+
+__Actions:__
+
+* Session control:
+`session-open`
+`session-close`
+`session-reload`
+* FS connector: 
+`fs-connect` 
+`fs-reconnect`
+`fs-reconnect`
+* FS file operations:
+`fs-path`
+`fs-info`
+`fs-read`
+`fs-write`
+`fs-delete`
+`fs-list`
+`fs-mkdir`
+`fs-rmdir` 
+- App file menu: 
+`app-file-new`
+`app-file-open` 
+`app-file-save`
+- App navigation:
+`app-navigate-forward`
+`app-navigate-back`
+`app-navigate-up`
+`app-navigate-home`
+
 ## Diagram
 ![Control Diagram](https://raw.githubusercontent.com/zocky/web-shell-api/master/diagram.png)
 
