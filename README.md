@@ -54,6 +54,18 @@ __Actions:__
 ## Diagram
 ![Control Diagram](https://raw.githubusercontent.com/zocky/web-shell-api/master/diagram.png)
 
+## Hierarchy tree
+Action requests travel down the hierarchy tree, events climb up.
+
+* shell controller(s)
+  * shell
+     * shell session
+       * app session(s)
+         * web app in sandboxed iframe
+     * shell file system
+        * web file system(s) in sandboxed iframes (possibly served cross-origin)
+           * file storage web service (from own server or the cloud)
+           
 ## Data Flow For "File Open"
 
 ```` js
