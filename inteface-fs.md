@@ -2,6 +2,9 @@
 
 #WebFS API: `fs`
 
+A Web File System is a web app which runs in a window (usually an iframe) and responds to shell's file system requests, which 
+it recieves via window messages.
+
 ## Table of contents
 
 | Type     | Name     | Description | Consumes | Produces |
