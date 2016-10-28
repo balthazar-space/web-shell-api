@@ -1,228 +1,295 @@
+# fs 
+
+## <small>Action</small> fs-path</code> 
+__Return information about a path.__ 
+
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path to query.<br><small></small> |
+| __fields__<br><small>IdentArray</small> | Fields that should be returned.<br><small></small> |
 
 
-#WebFS API: `fs`
+| Produces | Description |
+|:---- |:---- |
+| __filename__<br><small>FilenameString</small> | The cannonical name of the file<br><small>Return `null` if the file does not exist.</small> |
+| __type__<br><small>MimeTypeString</small> | The MIME type of the file at this path<br><small>Return `"directory"` for directories, `"file"` for files of unknown type and `null` if the file does not exist.</small> |
+| __can__<br><small>IdentArray</small> | FS actions that can be executed on this file<br><small>e.g.`["read","write"]`</small> |
+| __size__<br><small>Integer</small> | Byte length of the file<br><small></small> |
+| __ctime__<br><small>UnixTime</small> | Creation timestamp<br><small></small> |
+| __mtime__<br><small>UnixTime</small> | Modification timestamp<br><small></small> |
 
-A Web File System is a web app which runs in a window (usually an iframe) and responds to shell's file system requests, which 
-it recieves via window messages.
 
-## Table of contents
-
-| Type     | Name     | Description | Consumes | Produces |
-| -------- | -------- | ----------- | ---------- | -------- |
-|__`action`__ | __[`fs-path`](#action-fs-path)__ | Return information about a path. | `{ path, fields? }` | `{ filename, type, can?, size?, ctime?, mtime? }`|
-|__`action`__ | __[`fs-info`](#action-fs-info)__ | Return information about a file. | `{ path, fields? }` | `{ ... }`|
-|__`action`__ | __[`fs-read`](#action-fs-read)__ | Read the content of a file. | `{ path, fields? }` | `{ content, ... }`|
-|__`action`__ | __[`fs-write`](#action-fs-write)__ | Write content to a file | `{ path, type, content, fields? }` | `{ ... }`|
-|__`action`__ | __[`fs-delete`](#action-fs-delete)__ | Delete a file | `{ path, fields? }` | `{ ... }`|
-|__`action`__ | __[`fs-list`](#action-fs-list)__ | List the contents of a directory. | `{ path, type?, glob?, fields? }` | `{ list, ... }`|
-|__`action`__ | __[`fs-mkdir`](#action-fs-mkdir)__ | Create a directory. | `{ path, fields? }` | `{ ... }`|
-|__`action`__ | __[`fs-rmdir`](#action-fs-rmdir)__ | Delete a directory. | `{ path, recursive?, fields? }` | `{ ... }`|
-|__`error`__ | __[`fs-not-found`](#error-fs-not-found)__ | The file does not exist. | `{  }` | `{ path }`|
-|__`error`__ | __[`fs-not-allowed`](#error-fs-not-allowed)__ | This action is not allowed. | `{  }` | `{ path, action }`|
-|__`error`__ | __[`fs-not-directory`](#error-fs-not-directory)__ | This path is not a directory. | `{  }` | `{ path }`|
-|__`error`__ | __[`fs-not-empty`](#error-fs-not-empty)__ | This path is not a directory. | `{  }` | `{ path }`|
- 
-----
-## Action `fs-path`
-  
-Return information about a path.
-
-__request__
-
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path to query. | 
-__`fields?`__ | `IdentArray` | Fields that should be returned. | 
-
-__response__
-
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`filename`__ | `FilenameString` | The cannonical name of the file | Return `null` if the file does not exist.
-__`type`__ | `MimeTypeString` | The MIME type of the file at this path | Return `"directory"` for directories, `"file"` for files of unknown type and `null` if the file does not exist.
-__`can?`__ | `IdentArray` | FS actions that can be executed on this file | e.g.`["read","write"]`
-__`size?`__ | `Integer` | Byte length of the file | 
-__`ctime?`__ | `UnixTime` | Creation timestamp | 
-__`mtime?`__ | `UnixTime` | Modification timestamp | 
-
-----
-## Action `fs-info`
-  
-Return information about a file.
+## <small>Action</small> fs-info</code> 
+__Return information about a file.__ 
 
 Behaves the same as `fs-path` except it throws `not-found` if the file does not exist.
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The file to query.<br><small></small> |
+| __fields__<br><small>IdentArray</small> | Fields that should be returned.<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The file to query. | 
-__`fields?`__ | `IdentArray` | Fields that should be returned. | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-read`
-  
-Read the content of a file.
+## <small>Action</small> fs-read</code> 
+__Read the content of a file.__ 
 
 Returns the binary content of the file.
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path to read.<br><small></small> |
+| __fields__<br><small>IdentArray</small> | PathInfo fields that should be returned<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path to read. | 
-__`fields?`__ | `IdentArray` | PathInfo fields that should be returned | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __content__<br><small>ArrayBuffer</small> | Binary content of the file<br><small></small> |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`content`__ | `ArrayBuffer` | Binary content of the file | 
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-write`
-  
-Write content to a file
+## <small>Action</small> fs-write</code> 
+__Write content to a file__ 
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path to read<br><small></small> |
+| __type__<br><small>MimeTypeString</small> | MIME type of the file<br><small></small> |
+| __content__<br><small>ArrayBuffer</small> | Binary content that will be written .<br><small></small> |
+| __fields__<br><small>IdentArray</small> | PathInfo fields that should be returned.<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path to read | 
-__`type`__ | `MimeTypeString` | MIME type of the file | 
-__`content`__ | `ArrayBuffer` | Binary content that will be written . | 
-__`fields?`__ | `IdentArray` | PathInfo fields that should be returned. | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-delete`
-  
-Delete a file
+## <small>Action</small> fs-delete</code> 
+__Delete a file__ 
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path to read<br><small></small> |
+| __fields__<br><small>IdentArray</small> | PathInfo fields that should be returned.<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path to read | 
-__`fields?`__ | `IdentArray` | PathInfo fields that should be returned. | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-list`
-  
-List the contents of a directory.
+## <small>Action</small> fs-list</code> 
+__List the contents of a directory.__ 
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path to list<br><small></small> |
+| __type__<br><small>MimeAcceptMask</small> | Filter by MIME type<br><small></small> |
+| __glob__<br><small>FileGlobMask</small> | Filter by file name<br><small>E.g. `"*.txt"`</small> |
+| __fields__<br><small>IdentArray</small> | PathInfo fields that should be returned<br><small>The same fields should be returned both for the directory itself and listed files.</small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path to list | 
-__`type?`__ | `MimeAcceptMask` | Filter by MIME type | 
-__`glob?`__ | `FileGlobMask` | Filter by file name | E.g. `"*.txt"`
-__`fields?`__ | `IdentArray` | PathInfo fields that should be returned | The same fields should be returned both for the directory itself and listed files.
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __list__<br><small>ArrayOfPathInfo</small> | List of files<br><small></small> |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`list`__ | `Array of PathInfo` | List of files | 
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-mkdir`
-  
-Create a directory.
+## <small>Action</small> fs-mkdir</code> 
+__Create a directory.__ 
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path of the directory to be created.<br><small></small> |
+| __fields__<br><small>IdentArray</small> | PathInfo Fields that should be returned.<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path of the directory to be created. | 
-__`fields?`__ | `IdentArray` | PathInfo Fields that should be returned. | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Action `fs-rmdir`
-  
-Delete a directory.
+## <small>Action</small> fs-rmdir</code> 
+__Delete a directory.__ 
 
-__request__
+| Consumes | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | The path of the directory to be deleted.<br><small></small> |
+| __recursive__<br><small>Boolean</small> | Delete all contained files and subdirectories<br><small>This operation should be atomic, if possible. The API could possibly provide for specifying different failure strategies.</small> |
+| __fields__<br><small>IdentArray</small> | PathInfo Fields that should be returned.<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` | The path of the directory to be deleted. | 
-__`recursive?`__ | `Boolean` | Delete all contained files and subdirectories | This operation should be atomic, if possible. The API could possibly provide for specifying different failure strategies.
-__`fields?`__ | `IdentArray` | PathInfo Fields that should be returned. | 
 
-__response__
+| Produces | Description |
+|:---- |:---- |
+| __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`...`__ | `(various)` | Requested PathInfo fields | 
 
-----
-## Error `fs-not-found`
-  
-The file does not exist.
+## <small>Error</small> not-found</code> 
+__The file does not exist.__ 
 
-__error data__
+| Produces | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | <br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` |  | 
 
-----
-## Error `fs-not-allowed`
-  
-This action is not allowed.
+## <small>Error</small> not-allowed</code> 
+__This action is not allowed.__ 
 
-__error data__
+| Produces | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | <br><small></small> |
+| __action__<br><small>IdentString</small> | <br><small></small> |
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` |  | 
-__`action`__ | `IdentString` |  | 
+
+## <small>Error</small> not-directory</code> 
+__This path is not a directory.__ 
+
+| Produces | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | <br><small></small> |
+
+
+## <small>Error</small> not-empty</code> 
+__This path is not a directory.__ 
+
+| Produces | Description |
+|:---- |:---- |
+| __path__<br><small>PathString</small> | <br><small></small> |
 
 ----
-## Error `fs-not-directory`
-  
-This path is not a directory.
+Generated from:
+````
+# "fs"
 
-__error data__
+## Action fs-path
+"Return information about a path."
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` |  | 
+-> PathString path "The path to query."
 
-----
-## Error `fs-not-empty`
-  
-This path is not a directory.
+-> IdentArray fields "Fields that should be returned."
 
-__error data__
+<- FilenameString filename "The cannonical name of the file"
+Return `null` if the file does not exist.
 
-Name     | Type     | Description | Details
----------| -------- | ----------- | --------
-__`path`__ | `PathString` |  | 
+<- MimeTypeString type "The MIME type of the file at this path"
+Return `"directory"` for directories, `"file"` for files of unknown type and `null` if the file does not exist.
+
+<- IdentArray can "FS actions that can be executed on this file"
+e.g.`["read","write"]`
+
+<- Integer size "Byte length of the file"
+
+<- UnixTime ctime "Creation timestamp"
+
+<- UnixTime mtime "Modification timestamp"
+
+## Action fs-info
+"Return information about a file."
+
+Behaves the same as `fs-path` except it throws `not-found` if the file does not exist.
+
+-> PathString path "The file to query."
+
+-> IdentArray fields "Fields that should be returned."
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-read
+"Read the content of a file."
+
+Returns the binary content of the file.
+
+-> PathString path "The path to read."
+
+-> IdentArray fields "PathInfo fields that should be returned"
+
+<- ArrayBuffer content "Binary content of the file"
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-write
+"Write content to a file"
+
+-> PathString path "The path to read"
+
+-> MimeTypeString type "MIME type of the file"
+
+-> ArrayBuffer content "Binary content that will be written ."
+
+-> IdentArray fields "PathInfo fields that should be returned."
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-delete
+"Delete a file"
+
+-> PathString path "The path to read"
+
+-> IdentArray fields "PathInfo fields that should be returned."
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-list
+"List the contents of a directory."
+
+-> PathString path "The path to list"
+
+-> MimeAcceptMask type "Filter by MIME type"
+
+-> FileGlobMask glob "Filter by file name"
+E.g. `"*.txt"`
+
+-> IdentArray fields "PathInfo fields that should be returned"
+The same fields should be returned both for the directory itself and listed files.
+
+<- ArrayOfPathInfo list "List of files"
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-mkdir
+"Create a directory."
+
+-> PathString path "The path of the directory to be created."
+
+-> IdentArray fields "PathInfo Fields that should be returned."
+
+<- Various --- "requested PathInfo fields"
+
+## Action fs-rmdir
+"Delete a directory."
+
+-> PathString path "The path of the directory to be deleted."
+
+-> Boolean recursive "Delete all contained files and subdirectories"
+This operation should be atomic, if possible. The API could possibly provide for specifying different failure strategies.
+
+-> IdentArray fields "PathInfo Fields that should be returned."
+
+<- Various --- "requested PathInfo fields"
+
+## Error not-found
+"The file does not exist."
+
+<- PathString path
+
+## Error not-allowed
+"This action is not allowed."
+
+<- PathString path
+
+<- IdentString action
+
+## Error not-directory
+"This path is not a directory."
+
+<- PathString path
+
+## Error not-empty
+"This path is not a directory."
+
+<- PathString path
+````
