@@ -1,7 +1,24 @@
 # fs 
 
-## <small>Action</small> fs-path</code> 
-__Return information about a path.__ 
+
+
+## Table of Contents
+  - __<tt>Action [fs-path](#action-fs-path)</tt>__ <small>Return information about a path.</small> 
+  - __<tt>Action [fs-info](#action-fs-info)</tt>__ <small>Return information about a file.</small> 
+  - __<tt>Action [fs-read](#action-fs-read)</tt>__ <small>Read the content of a file.</small> 
+  - __<tt>Action [fs-write](#action-fs-write)</tt>__ <small>Write content to a file</small> 
+  - __<tt>Action [fs-delete](#action-fs-delete)</tt>__ <small>Delete a file</small> 
+  - __<tt>Action [fs-list](#action-fs-list)</tt>__ <small>List the contents of a directory.</small> 
+  - __<tt>Action [fs-mkdir](#action-fs-mkdir)</tt>__ <small>Create a directory.</small> 
+  - __<tt>Action [fs-rmdir](#action-fs-rmdir)</tt>__ <small>Delete a directory.</small> 
+  - __<tt>Error [not-found](#error-not-found)</tt>__ <small>The file does not exist.</small> 
+  - __<tt>Error [not-allowed](#error-not-allowed)</tt>__ <small>This action is not allowed.</small> 
+  - __<tt>Error [not-directory](#error-not-directory)</tt>__ <small>This path is not a directory.</small> 
+  - __<tt>Error [not-empty](#error-not-empty)</tt>__ <small>This path is not a directory.</small> 
+
+## Action `fs-path` 
+ __Return information about a path.__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -19,8 +36,8 @@ __Return information about a path.__
 | __mtime__<br><small>UnixTime</small> | Modification timestamp<br><small></small> |
 
 
-## <small>Action</small> fs-info</code> 
-__Return information about a file.__ 
+## Action `fs-info` 
+ __Return information about a file.__ 
 
 Behaves the same as `fs-path` except it throws `not-found` if the file does not exist.
 
@@ -35,8 +52,8 @@ Behaves the same as `fs-path` except it throws `not-found` if the file does not 
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-read</code> 
-__Read the content of a file.__ 
+## Action `fs-read` 
+ __Read the content of a file.__ 
 
 Returns the binary content of the file.
 
@@ -52,8 +69,9 @@ Returns the binary content of the file.
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-write</code> 
-__Write content to a file__ 
+## Action `fs-write` 
+ __Write content to a file__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -68,8 +86,9 @@ __Write content to a file__
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-delete</code> 
-__Delete a file__ 
+## Action `fs-delete` 
+ __Delete a file__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -82,8 +101,9 @@ __Delete a file__
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-list</code> 
-__List the contents of a directory.__ 
+## Action `fs-list` 
+ __List the contents of a directory.__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -99,8 +119,9 @@ __List the contents of a directory.__
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-mkdir</code> 
-__Create a directory.__ 
+## Action `fs-mkdir` 
+ __Create a directory.__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -113,8 +134,9 @@ __Create a directory.__
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Action</small> fs-rmdir</code> 
-__Delete a directory.__ 
+## Action `fs-rmdir` 
+ __Delete a directory.__ 
+
 
 | Consumes | Description |
 |:---- |:---- |
@@ -128,16 +150,18 @@ __Delete a directory.__
 | __---__<br><small>Various</small> | requested PathInfo fields<br><small></small> |
 
 
-## <small>Error</small> not-found</code> 
-__The file does not exist.__ 
+## Error `not-found` 
+ __The file does not exist.__ 
+
 
 | Produces | Description |
 |:---- |:---- |
 | __path__<br><small>PathString</small> | <br><small></small> |
 
 
-## <small>Error</small> not-allowed</code> 
-__This action is not allowed.__ 
+## Error `not-allowed` 
+ __This action is not allowed.__ 
+
 
 | Produces | Description |
 |:---- |:---- |
@@ -145,23 +169,25 @@ __This action is not allowed.__
 | __action__<br><small>IdentString</small> | <br><small></small> |
 
 
-## <small>Error</small> not-directory</code> 
-__This path is not a directory.__ 
+## Error `not-directory` 
+ __This path is not a directory.__ 
+
 
 | Produces | Description |
 |:---- |:---- |
 | __path__<br><small>PathString</small> | <br><small></small> |
 
 
-## <small>Error</small> not-empty</code> 
-__This path is not a directory.__ 
+## Error `not-empty` 
+ __This path is not a directory.__ 
+
 
 | Produces | Description |
 |:---- |:---- |
 | __path__<br><small>PathString</small> | <br><small></small> |
 
 ----
-Generated from:
+<details><summary>Generated from:</summary>
 ````
 # "fs"
 
@@ -293,3 +319,4 @@ This operation should be atomic, if possible. The API could possibly provide for
 
 <- PathString path
 ````
+</details>
