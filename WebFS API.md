@@ -13,7 +13,7 @@ common file system operatons for various file storage web services.
 + [Action `fs-read`](#action-fs-read)
 + [Action `fs-write`](#action-fs-write)
 
-##Synopsis
+## Synopsis
 ```
 @action fs-path (path,[fields]) => PathInfo
 Return information about a path.
