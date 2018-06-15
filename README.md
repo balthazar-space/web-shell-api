@@ -36,6 +36,8 @@ __Actions:__
 `fs-path`
 `fs-info`
 `fs-read`
+`fs-rename˙
+`fs-move`
 `fs-write`
 `fs-delete`
 `fs-list`
